@@ -30,7 +30,8 @@ final class RouteContainer
      * 
      * @return RouteContainer RouteContainer object
      */
-    public static function init() {
+    public static function init(): RouteContainer
+    {
         static $instance = null;
 
         if ($instance === null) {
@@ -49,7 +50,8 @@ final class RouteContainer
      * @param string $http_method    one of the HTTP_METHOD_* constants found in this class
      * @param string|function $callback       [description]
      */
-    public function set($resource_route, $http_method, $callback) {
+    public function set($resource_route, $http_method, $callback): void
+    {
       $this->getContainerForMethod($http_method)[trim($resource_route,'/')] = new Route(trim($resource_route,'/'), $http_method, $callback);
     }
 

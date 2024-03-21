@@ -14,10 +14,10 @@ class Router {
      * Contains the instance of the RouteContainer class (singleton)
      * @var RouteContainer
      */
-    private $RouteContainer;
+    private RouteContainer $routeContainer;
 
     public function __construct() {
-       $this->RouteContainer = RouteContainer::init();
+       $this->routeContainer = RouteContainer::init();
     }
 
     /**
@@ -31,7 +31,7 @@ class Router {
      * @return void
      */
     public function dispatch($resource_route, $Request) {
-      $route = $this->RouteContainer->get($resource_route, $Request->getMethod());
+      $route = $this->routeContainer->get($resource_route, $Request->getMethod());
       if (!$route) {
         throw new InvalidRouteException('Route not recognised');
       }
@@ -66,7 +66,7 @@ class Router {
         throw new \BadFunctionCallException('Controller method not found');
       }
 
-      $Request->setParsedUrlParameters($this->RouteContainer->getParsedUrlParameters());
+      $Request->setParsedUrlParameters($this->routeContainer->getParsedUrlParameters());
 
       // call method on controller object
       call_user_func(array($controller, $method_name), $Request);

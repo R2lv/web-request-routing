@@ -24,13 +24,13 @@ class Request {
      * Prased input from $_POST, $_GET, or php://input
      * @var array
      */
-    private $request_parameters;
+    private $parameters;
 
     /**
      * HTTP Request method
      * @var string
      */
-    private $http_method;
+    private string $method;
     
     /**
      * Gathers HTTP request information
